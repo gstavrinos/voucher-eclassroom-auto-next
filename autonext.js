@@ -41,8 +41,18 @@ function listenToSCORM() {
         if(document.getElementById("scorm_object").contentWindow.document.body.querySelectorAll(".cs-fill.progress-bar-fill").length > 0 && curr_slide != "Αξιολόγηση"){
             var valuenow = document.getElementById("scorm_object").contentWindow.document.getElementsByClassName("progress-bar-fill")[0].getAttribute("aria-valuenow");
             var valuemax = document.getElementById("scorm_object").contentWindow.document.getElementsByClassName("progress-bar-fill")[0].getAttribute("aria-valuemax");
-            if (valuenow == valuemax && !clicked) {
-                document.getElementById("scorm_object").contentWindow.document.body.querySelectorAll("#next")[0].click();
+            var style = document.getElementById("scorm_object").contentWindow.document.getElementsByClassName("progress-bar-fill")[0].getAttribute("style");
+            console.log(style);
+            if (((valuemax != null && valuenow == valuemax) || style != null && style.includes("100%")) && !clicked) {
+//                 document.getElementById("scorm_object").contentWindow.document.body.querySelectorAll("#next")[0].click();
+                var btns = document.getElementById("scorm_object").contentWindow.document.getElementsByClassName("btn")
+                for (var i = 0; i < btns.length; i++) {
+                    console.log(btns[i].innerText);
+                    if (btns[i].innerText.includes("ΕΠΟΜ")) {
+                        btns[i].click();
+                        break;
+                    }
+                }
                 clicked = true;
                 setTimeout(function() {
                     clicked = false
