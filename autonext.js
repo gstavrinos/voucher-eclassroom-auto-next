@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Voucher eclassroom auto-next
 // @namespace    https://github.com/gstavrinos
-// @version      0.1
+// @version      0.2
 // @description  Stop clicking next every 10 seconds!
 // @author       George Stavrinos
 // @match        https://voucher.eclassroom.gr/mod/scorm/player*
@@ -56,7 +56,7 @@ function listenToSCORM() {
                 clicked = true;
                 setTimeout(function() {
                     clicked = false
-                }, 3000);
+                }, 1500);
             }
         }
         mutations.forEach(function(mutation) {
